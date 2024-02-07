@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 
 #application.yml파일 지우기
-.yml
+*.yml
 
 ### STS ###
 .apt_generated
