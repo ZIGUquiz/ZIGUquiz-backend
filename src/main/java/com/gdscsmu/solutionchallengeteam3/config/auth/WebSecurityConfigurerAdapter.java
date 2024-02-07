@@ -26,6 +26,13 @@ public class WebSecurityConfigurerAdapter {
 //    private final OAuth2SuccessHandler oAuth2SuccessHandler;
 //    private final TokenAuthenticationFilter tokenAuthenticationFilter;
 
+    //권한 확인을 하지 않는 uri
+    //https://mag1c.tistory.com/137
+    private static final String[] PERMIT_ALL_PATTERNS = new String[] {
+            "/",
+            "/admin"
+    };
+
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() { // security를 적용하지 않을 리소스
         return web -> web.ignoring()
@@ -46,11 +53,9 @@ public class WebSecurityConfigurerAdapter {
 
                 // request 인증, 인가 설정
                 .authorizeHttpRequests((request) -> request
-                        .requestMatchers(new AntPathRequestMatcher("/"),
-                                new AntPathRequestMatcher("/auth/success"))
-                        .hasAuthority("ROLE_USER")
-                        .anyRequest()
-                        .authenticated()
+                        .requestMatchers(PERMIT_ALL_PATTERNS)   //인증없이 접근 가능
+                        .permitAll()
+                        .anyRequest().authenticated() //나머지 접근에 대해서는 인증된 사용자만 접근 가능하게 합니다.
                 )
 
                 // oauth2 설정
@@ -58,6 +63,8 @@ public class WebSecurityConfigurerAdapter {
                                 // OAuth2 로그인 기능에 대한 여러 설정의 진입점
                                 // OAuth2 로그인 성공 이후 사용자 정보를 가져올 때의 설정을 담당
                                 .userInfoEndpoint(c -> c.userService(oAuth2UserService))
+                                .defaultSuccessUrl("/")        //로그인 성공시
+                                .failureUrl("/login")    //로그인 실패시
                         // 로그인 성공 시 핸들러
 //                        .successHandler(oAuth2SuccessHandler)
                 );
