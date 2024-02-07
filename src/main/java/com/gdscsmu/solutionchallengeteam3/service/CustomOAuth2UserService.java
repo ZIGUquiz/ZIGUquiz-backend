@@ -39,6 +39,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         User user = saveOrUpdate(attributes);
 
         httpSession.setAttribute("user", new SessionUser(user));    // 세션에 저장
+        httpSession.setMaxInactiveInterval(1800);   //세션 유효시간 : 1800초 = 30분
 
 
         return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())), attributes.getAttributes(), attributes.getNameAttributeKey());

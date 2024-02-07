@@ -1,21 +1,16 @@
 package com.gdscsmu.solutionchallengeteam3.config.auth;
 
-import com.gdscsmu.solutionchallengeteam3.domain.user.Role;
 import com.gdscsmu.solutionchallengeteam3.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 @Configuration
 @RequiredArgsConstructor
@@ -31,7 +26,8 @@ public class WebSecurityConfigurerAdapter {
     private static final String[] PERMIT_ALL_PATTERNS = new String[] {
             "/",
             "/login",
-            "/admin"
+            "/admin",
+            "/session/user"
     };
 
     @Bean
@@ -56,7 +52,9 @@ public class WebSecurityConfigurerAdapter {
                 .authorizeHttpRequests((request) -> request
                         .requestMatchers(PERMIT_ALL_PATTERNS)   //인증없이 접근 가능
                         .permitAll()
-                        .anyRequest().authenticated() //나머지 접근에 대해서는 인증된 사용자만 접근 가능하게 합니다.
+//                        .hasAuthority("USER")
+//                        .anyRequest().authenticated() //나머지 접근에 대해서는 인증된 사용자만 접근 가능하게 합니다.
+                        .anyRequest().anonymous()
                 )
 
                 // oauth2 설정
