@@ -1,5 +1,6 @@
 package com.gdscsmu.solutionchallengeteam3.domain;
 
+import com.gdscsmu.solutionchallengeteam3.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

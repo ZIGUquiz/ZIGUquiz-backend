@@ -3,7 +3,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #    ?? PC? ????? Database??? ?? ???. 
-    url: jdbc:mysql://127.0.0.1:3306/study # Database?? ?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://127.0.0.1:3306/ziguquiz # Database?? ?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     #    mysql? ??? ??? ?? ??? ?? ???.
     username: root
     password: Mrbqls14759! # ??? mysql ????
@@ -22,3 +22,11 @@ spring:
       user:
         name: user
         password: 1234
+
+      oauth2:
+        client:
+          registration:
+            google:
+              client-id: 923824166987-d1j100h3osfbp5d7irhp7kqsooo7t6ta.apps.googleusercontent.com
+              client-secret: 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
+              scope: profile,email
