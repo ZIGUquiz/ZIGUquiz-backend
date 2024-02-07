@@ -1,4 +1,4 @@
-package com.gdscsmu.solutionchallengeteam3.domain.auth;
+package com.gdscsmu.solutionchallengeteam3.domain.dto;
 
 import com.gdscsmu.solutionchallengeteam3.domain.user.Role;
 import com.gdscsmu.solutionchallengeteam3.domain.user.User;
@@ -13,29 +13,32 @@ public class OAuthAttributes {
     private String nameAttributeKey;
     private String name;
     private String email;
-    private String picture;
+    private String provider;
+    private String providerId;
 
     @Builder
-    public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String email, String picture) {
+    public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String email, String provider, String providerId) {
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
         this.name = name;
         this.email = email;
-        this.picture = picture;
+        this.provider = provider;
+        this.providerId = providerId;
     }
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes){
-        return ofGoogle(userNameAttributeName, attributes);
+        return ofGoogle(registrationId, userNameAttributeName, attributes);
         //  OAuth2User에서 반환한 정보를  Map에서 OAuthAttributes로 반환하는 코드.
     }
 
-    private static OAuthAttributes ofGoogle(String userNameAttributeName,Map<String, Object> attributes ){
+    private static OAuthAttributes ofGoogle(String registrationId, String userNameAttributeName,Map<String, Object> attributes ){
         return OAuthAttributes.builder()
-                .name((String) attributes.get("name"))
-                .email((String)attributes.get("email"))
-                .picture((String)attributes.get("picture"))
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
+                .name((String) attributes.get("name"))
+                .email((String)attributes.get("email"))
+                .provider(registrationId)
+                .providerId((String) attributes.get(userNameAttributeName))
                 .build();
     }
 
@@ -43,6 +46,8 @@ public class OAuthAttributes {
         return User.builder()
                 .name(name)
                 .email(email)
+                .provider(provider)
+                .providerId(providerId)
                 .role(Role.GUEST)
                 .build();
         // user엔티티를 생성

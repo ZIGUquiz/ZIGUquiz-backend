@@ -30,6 +30,7 @@ public class WebSecurityConfigurerAdapter {
     //https://mag1c.tistory.com/137
     private static final String[] PERMIT_ALL_PATTERNS = new String[] {
             "/",
+            "/login",
             "/admin"
     };
 
@@ -60,11 +61,12 @@ public class WebSecurityConfigurerAdapter {
 
                 // oauth2 설정
                 .oauth2Login(oauth -> oauth
+                                .loginPage("/login")
                                 // OAuth2 로그인 기능에 대한 여러 설정의 진입점
                                 // OAuth2 로그인 성공 이후 사용자 정보를 가져올 때의 설정을 담당
                                 .userInfoEndpoint(c -> c.userService(oAuth2UserService))
                                 .defaultSuccessUrl("/")        //로그인 성공시
-                                .failureUrl("/login")    //로그인 실패시
+                                .failureUrl("/auth/login")    //로그인 실패시
                         // 로그인 성공 시 핸들러
 //                        .successHandler(oAuth2SuccessHandler)
                 );
