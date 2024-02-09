@@ -1,5 +1,6 @@
 package com.gdscsmu.solutionchallengeteam3.config.auth;
 
+import com.gdscsmu.solutionchallengeteam3.handler.OAuth2SuccessHandler;
 import com.gdscsmu.solutionchallengeteam3.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService oAuth2UserService;
-//    private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
 //    private final TokenAuthenticationFilter tokenAuthenticationFilter;
 
     //권한 확인을 하지 않는 uri
@@ -66,7 +67,7 @@ public class WebSecurityConfigurerAdapter {
                                 .defaultSuccessUrl("/")        //로그인 성공시
                                 .failureUrl("/auth/login")    //로그인 실패시
                         // 로그인 성공 시 핸들러
-//                        .successHandler(oAuth2SuccessHandler)
+                        .successHandler(oAuth2SuccessHandler)
                 );
 
         // jwt 관련 설정
