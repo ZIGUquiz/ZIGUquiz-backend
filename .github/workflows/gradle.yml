@@ -50,7 +50,8 @@ jobs:
         docker build -t ziguquiz .
         docker tag ziguquiz skb0606/ziguquiz:${GITHUB_SHA::7}
         docker push skb0606/ziguquiz:${GITHUB_SHA::7}
-		# Deploy
+		
+  # Deploy
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
