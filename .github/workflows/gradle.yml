@@ -28,7 +28,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         
-    # Gradlew 실행 허용
+    # Gradlew 실행 허용2
     - name: Run chmod to make gradlew executable
       run: chmod +x ./gradlew
 
