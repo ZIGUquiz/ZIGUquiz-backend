@@ -8,16 +8,16 @@ import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
-public class Board {
+public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "board_id")
+    @Column(name = "country_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column
+    private String countryName;
 
-    private String content;
+    @Column
+    private Long count;
 }

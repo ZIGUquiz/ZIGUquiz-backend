@@ -1,6 +1,5 @@
 package com.gdscsmu.solutionchallengeteam3.domain.user;
 
-import com.gdscsmu.solutionchallengeteam3.domain.Board;
 import com.gdscsmu.solutionchallengeteam3.domain.dto.UserDto;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -38,9 +37,6 @@ public class User {
     private String provider;
     @Column
     private String providerId;
-
-    @OneToMany(mappedBy = "user") // User와 Board 간의 일대다 관계를 나타냅니다. 'user'는 Board 클래스의 User 필드를 참조합니다.
-    private List<Board> boards = new ArrayList<>();
 
     public static User fromUserDto(UserDto userDto) {
         return User.builder()
