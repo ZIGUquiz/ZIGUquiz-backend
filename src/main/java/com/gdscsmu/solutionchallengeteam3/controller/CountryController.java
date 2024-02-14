@@ -31,11 +31,10 @@ public class CountryController {
     public ResponseEntity<?> updateNationality(@CookieValue(value = "token") String token,@RequestBody CountryDto messageBody) throws IOException {
         // ***** 쿠키로 유저찾기
         Map userAttributes = JwtParser.parseUser(token);
-        UserDto userDto = UserDto.of(userAttributes);
         // *****
 
         String inputNationality = messageBody.getNationality();
-        countryService.countrySet(userDto.getEmail(), inputNationality);
+        countryService.countrySet(userAttributes, inputNationality);
 
 
         return ResponseEntity.ok().body("success");
@@ -46,14 +45,22 @@ public class CountryController {
     public ResponseEntity<?> updateRank(@CookieValue(value = "token") String token, @RequestBody HashMap<String, String> requestMap) throws IOException {
         // ***** 쿠키로 유저찾기
         Map userAttributes = JwtParser.parseUser(token);
-        UserDto userDto = UserDto.of(userAttributes);
         // *****
 
         int score = Integer.parseInt(requestMap.get("score"));
 
-        countryService.quizDone(userDto, score);
+        countryService.quizDone(userAttributes, score);
 
 
         return ResponseEntity.ok().body("success");
+    }
+
+    @ResponseBody //cookie 받고 , 나라  +1 (예외처리)
+    @GetMapping("/quiz/rank")
+    public ResponseEntity<?> getRank() {
+
+        Map<String, Integer> rank = countryService.getRank();
+
+        return ResponseEntity.ok().body(rank);
     }
 }

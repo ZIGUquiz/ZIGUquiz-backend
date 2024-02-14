@@ -1,9 +1,11 @@
 package com.gdscsmu.solutionchallengeteam3.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class Country {
 
