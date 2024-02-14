@@ -27,6 +27,7 @@ public class UserDto {
                 .name(name)
                 .email(email)
                 .picture(picture)
+                .nationality(nationality)
                 .provider(provider)
                 .providerId(providerId)
                 .build();
@@ -40,6 +41,7 @@ public class UserDto {
                 .email(attributes.get("email").toString())
                 .picture(attributes.get("picture").toString())
                 .providerId(attributes.get("sub").toString())
+                .nationality("korea")
                 .provider("google")
                 .role(Role.USER)
                 .build();
@@ -51,17 +53,19 @@ public class UserDto {
                 .email(user.getEmail())
                 .picture(user.getPicture())
                 .role(user.getRole())
+                .nationality(user.getNationality())
                 .provider(user.getProvider())
                 .providerId(user.getProviderId())
                 .build();
     }
 
     @Builder
-    public UserDto(String name, String email, String provider,String picture, String providerId, Role role) {
+    public UserDto(String name, String email, String provider,String picture, String nationality, String providerId, Role role) {
         this.name = name;
         this.email = email;
         this.picture = picture;
         this.role = role;
+        this.nationality = nationality;
         this.provider = provider;
         this.providerId = providerId;
     }
