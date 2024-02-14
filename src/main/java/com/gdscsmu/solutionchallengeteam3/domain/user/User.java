@@ -44,17 +44,19 @@ public class User {
                 .email(userDto.getEmail())
                 .picture(userDto.getPicture())
                 .role(userDto.getRole())
+                .nationality(userDto.getNationality())
                 .provider(userDto.getProvider())
                 .providerId(userDto.getProviderId())
                 .build();
     }
 
     @Builder
-    public User(String name, String email, String provider,String picture, String providerId, Role role) {
+    public User(String name, String email, String provider,String picture,String nationality, String providerId, Role role) {
         this.name = name;
         this.email = email;
         this.picture = picture;
         this.role = role;
+        this.nationality = nationality;
         this.provider = provider;
         this.providerId = providerId;
     }

@@ -1,10 +1,7 @@
 package com.gdscsmu.solutionchallengeteam3.domain;
 
-import com.gdscsmu.solutionchallengeteam3.domain.user.User;
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
@@ -19,5 +16,15 @@ public class Country {
     private String countryName;
 
     @Column
-    private Long count;
+    private int count;
+
+
+    public Country(String countryName, int count) {
+        this.countryName = countryName;
+        this.count = count;
+    }
+
+    public void countUp() {
+        this.count++;
+    }
 }
