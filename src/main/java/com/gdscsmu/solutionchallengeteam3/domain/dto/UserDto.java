@@ -1,6 +1,5 @@
 package com.gdscsmu.solutionchallengeteam3.domain.dto;
 
-import com.gdscsmu.solutionchallengeteam3.domain.Board;
 import com.gdscsmu.solutionchallengeteam3.domain.user.Role;
 import com.gdscsmu.solutionchallengeteam3.domain.user.User;
 import lombok.*;
