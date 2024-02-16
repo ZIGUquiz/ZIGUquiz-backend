@@ -5,6 +5,7 @@ import com.gdscsmu.solutionchallengeteam3.domain.dto.UserDto;
 import com.gdscsmu.solutionchallengeteam3.domain.dto.response.LoginResponse;
 import com.gdscsmu.solutionchallengeteam3.domain.user.User;
 import com.gdscsmu.solutionchallengeteam3.repository.UserRepository;
+import com.gdscsmu.solutionchallengeteam3.util.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,8 @@ public class LoginService {
             userRepository.save(user);
             isNewMember = true;
         }
+//        JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
+//        String token = jwtTokenProvider.createToken(userAttributes.get("name").toString(), userAttributes.get("email").toString());
 
         return new LoginResponse(user, isNewMember);
     }

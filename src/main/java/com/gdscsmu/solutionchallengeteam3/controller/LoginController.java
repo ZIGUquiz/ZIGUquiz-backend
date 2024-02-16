@@ -50,12 +50,9 @@ public class LoginController {
         Map userAttributes = mapper.readValue(userInfoBody, Map.class);
 
 //        user 존재 판별
-        loginService.loginProcess(userAttributes);
+        LoginResponse loginResponse = loginService.loginProcess(userAttributes);
 
-        JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
-        String token = jwtTokenProvider.createToken(userAttributes.get("email").toString());
-
-        return ResponseEntity.ok().body(token);
+        return ResponseEntity.ok().body(loginResponse);
     }
 }
 
