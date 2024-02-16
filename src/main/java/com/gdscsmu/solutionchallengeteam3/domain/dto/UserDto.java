@@ -40,7 +40,7 @@ public class UserDto {
                 .name(attributes.get("name").toString())
                 .email(attributes.get("email").toString())
                 .picture(attributes.get("picture").toString())
-                .providerId(attributes.get("sub").toString())
+                .providerId(attributes.get("id").toString())
                 .nationality("korea")
                 .provider("google")
                 .role(Role.USER)
