@@ -28,7 +28,7 @@ public class CountryController {
 
     @ResponseBody
     @PostMapping("/user/set-country")
-    public ResponseEntity<?> updateNationality(@CookieValue(value = "token") String token,@RequestBody CountryDto messageBody) throws IOException {
+    public ResponseEntity<?> updateNationality(@CookieValue(value = "accessToken") String token,@RequestBody CountryDto messageBody) throws IOException {
         // ***** 쿠키로 유저찾기
         Map userAttributes = JwtParser.parseUser(token);
         // *****
@@ -42,7 +42,7 @@ public class CountryController {
 
     @ResponseBody //cookie 받고 , 나라  +1 (예외처리)
     @PatchMapping("/quiz/update-rank")
-    public ResponseEntity<?> updateRank(@CookieValue(value = "token") String token, @RequestBody HashMap<String, String> requestMap) throws IOException {
+    public ResponseEntity<?> updateRank(@CookieValue(value = "accessToken") String token, @RequestBody HashMap<String, String> requestMap) throws IOException {
         // ***** 쿠키로 유저찾기
         Map userAttributes = JwtParser.parseUser(token);
         // *****
