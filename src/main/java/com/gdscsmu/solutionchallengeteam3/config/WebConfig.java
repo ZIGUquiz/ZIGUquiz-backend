@@ -13,7 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry
                 .addMapping("/**")
                 .allowedHeaders("*")
-                .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("*")    //나중에 배포 시 수정할것!!!!!!!
                 .allowedMethods("*");
     }
 }
