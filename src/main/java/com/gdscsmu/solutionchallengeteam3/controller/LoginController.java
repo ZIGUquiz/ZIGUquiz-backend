@@ -39,6 +39,8 @@ public class LoginController {
     @PostMapping("/auth/login")
     public ResponseEntity<?> jwtParse(@RequestBody HashMap<String, String> requestMap) throws IOException {
 
+        log.info("check login = {}",requestMap);
+
         //request로 넘어온 정보
         ResponseEntity<String> userInfo = RequestGoogle.requestUserInfo(requestMap.get("access_token"));
         String userInfoBody = userInfo.getBody();
