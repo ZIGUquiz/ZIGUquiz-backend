@@ -13,10 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -72,8 +69,12 @@ public class CountryService {
 
         countries = countries.subList(0,rankNum);
 
-        Map<String, Integer> map = countries.stream().collect(
-                Collectors.toMap(Country::getCountryName, Country::getCount));
+        Map<String, Integer> map = countries.stream()
+                .collect(Collectors.toMap(
+                        Country::getCountryName, // 키 매퍼
+                        Country::getCount,       // 값 매퍼
+                        (oldValue, newValue) -> oldValue, // 같은 키가 있을 경우 어떻게 처리할지 (여기서는 이전 값을 사용)
+                        LinkedHashMap::new));
 
         return map;
     }
