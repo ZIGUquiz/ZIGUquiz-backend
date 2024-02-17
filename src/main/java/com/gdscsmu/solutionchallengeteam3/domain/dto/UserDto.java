@@ -41,7 +41,7 @@ public class UserDto {
                 .email(attributes.get("email").toString())
                 .picture(attributes.get("picture").toString())
                 .providerId(attributes.get("id").toString())
-                .nationality("korea")
+                .nationality("kr")
                 .provider("google")
                 .role(Role.USER)
                 .build();
