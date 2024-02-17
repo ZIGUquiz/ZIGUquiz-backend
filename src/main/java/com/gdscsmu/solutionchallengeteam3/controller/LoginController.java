@@ -50,6 +50,7 @@ public class LoginController {
         Map userAttributes = mapper.readValue(userInfoBody, Map.class);
 
 //        user 존재 판별
+
         LoginResponse loginResponse = loginService.loginProcess(userAttributes);
 
         return ResponseEntity.ok().body(loginResponse);

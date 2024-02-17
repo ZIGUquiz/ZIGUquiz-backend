@@ -7,12 +7,12 @@ import lombok.Setter;
 
 @Getter @Setter
 public class LoginResponse {
-    private UserDto user;
+    private String token;
     private boolean isNewMember;
 
     // 생성자
-    public LoginResponse(User user, boolean isNewMember) {
-        this.user = UserDto.fromUser(user);
+    public LoginResponse(String token, boolean isNewMember) {
+        this.token = token;
         this.isNewMember = isNewMember;
     }
 }

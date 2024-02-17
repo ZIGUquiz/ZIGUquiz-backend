@@ -36,10 +36,10 @@ public class LoginService {
             userRepository.save(user);
             isNewMember = true;
         }
-//        JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
-//        String token = jwtTokenProvider.createToken(userAttributes.get("name").toString(), userAttributes.get("email").toString());
+        JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
+        String token = jwtTokenProvider.createToken(userAttributes.get("name").toString(), userAttributes.get("email").toString());
 
-        return new LoginResponse(user, isNewMember);
+        return new LoginResponse(token, isNewMember);
     }
 
 }
