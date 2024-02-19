@@ -36,7 +36,7 @@ public class LoginController {
     private final LoginService loginService;
 
     @ResponseBody
-    @PostMapping("/auth/login")
+    @PostMapping("/api/auth/login")
     public ResponseEntity<?> jwtParse(@RequestBody HashMap<String, String> requestMap) throws IOException {
 
         log.info("check login = {}",requestMap);
