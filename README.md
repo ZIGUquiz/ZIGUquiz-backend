@@ -43,3 +43,9 @@ Alternatively, you can run the JAR file directly:
 java -jar build/libs/your-spring-boot-project-0.0.1-SNAPSHOT.jar
 ```
 The application will start and be accessible on http://localhost:8080.
+
+
+
+
+## Project Architecture
+![ziguquiz](https://github.com/ZIGUquiz/ZIGUquiz-backend/assets/89975936/894a3d36-050e-4b47-8a22-4687f664af90)
